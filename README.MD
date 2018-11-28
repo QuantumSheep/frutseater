@@ -3,7 +3,7 @@
 This repo will help you to eat the goddamn fruts.
 
 ## DEMO
-https://mickdec.github.io/FRUTSEATER/
+https://mickdec.github.io/frutseater/
 
 <hr>
 
