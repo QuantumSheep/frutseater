@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body,
+    html {
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    .fruits {
+        width: 10px;
+        height: 10px;
+        background-color: yellow;
+        position: absolute;
+    }
+
+    #perso {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background-color: blue;
+    }
+
+    #terrain {
+        width: 100%;
+        height: 100%;
+        border: solid 5px black;
+        background-color: #c3c3c3;
+    }
+</style>
+
+<body>
+    <div id="terrain">
+        <div id="perso" style="margin:0;padding:0;"></div>
+        <div class="fruits"></div>
+    </div>
+</body>
+<script>
+    //CREATE SOME FRUTS (CAN BE BANANA OR APPLES)
+    for (let i = 500; i > 0; i-- > 0) {
+        let newFruit = document.createElement('newFruit');
+        newFruit.className = 'fruits';
+        document.getElementById("terrain").appendChild(newFruit);
+    }
+
+    //SET THE POSITION OF ALL THE FRUTS ONE BY ONE
+    let fruits = document.getElementsByClassName("fruits");
+    let arr = Array.prototype.slice.call(fruits);
+    arr.forEach(fruit => {
+        let fruitmtop = Math.floor(Math.random() * Math.floor(document.body.clientHeight-20));
+        let fruitmleft = Math.floor(Math.random() * Math.floor(document.body.clientWidth-20));
+
+        while (fruitmtop % 4 != 0) {
+            fruitmtop--;
+        }
+        while (fruitmleft % 4 != 0) {
+            fruitmleft--;
+        }
+
+        fruit.style.marginTop = `${fruitmtop}px`;
+        fruit.style.marginLeft = `${fruitmleft}px`;
+    });
+
+    //GETTING THE FRUTEATER POSITION
+    let persomtop = document.getElementById("perso").style.marginTop;
+    sizeTop = persomtop.match(/\d+/);
+    let persomleft = document.getElementById("perso").style.marginLeft;
+    sizeLeft = persomleft.match(/\d+/);
+    let persop = document.getElementById("perso").style.padding;
+    sizep = persop.match(/\d+/);
+
+    //THATS THE COMMAND FOR THE FRUTEATER THING
+    document.addEventListener("keypress", ({ key }) => {
+        const fruits = document.getElementsByClassName("fruits");
+        const arr = Array.prototype.slice.call(fruits);
+        arr.forEach(fruit => {
+            if (sizeTop == fruit.style.marginTop.match(/\d+/) && sizeLeft == fruit.style.marginLeft.match(/\d+/)) {
+                sizep++; sizep++; sizep++; sizep++;
+                document.getElementById("perso").style.padding = `${sizep}px`;
+                fruit.remove();
+            };
+        });
+        if (key == "ArrowDown") {
+            sizeTop++; sizeTop++; sizeTop++; sizeTop++;
+            document.getElementById("perso").style.marginTop = `${sizeTop}px`;
+        }
+        if (key == "ArrowUp") {
+            sizeTop--; sizeTop--; sizeTop--; sizeTop--;
+            document.getElementById("perso").style.marginTop = `${sizeTop}px`;
+        }
+        if (key == "ArrowLeft") {
+            sizeLeft--; sizeLeft--; sizeLeft--; sizeLeft--;
+            document.getElementById("perso").style.marginLeft = `${sizeLeft}px`;
+        }
+        if (key == "ArrowRight") {
+            sizeLeft++; sizeLeft++; sizeLeft++; sizeLeft++;
+            document.getElementById("perso").style.marginLeft = `${sizeLeft}px`;
+        }
+
+        //SOME DEBUG THINGS
+        // console.log(`perso : Margintop = ${sizeTop}px; MarginLeft = ${sizeLeft}px;`);
+    })
+</script>
+
+</html>
