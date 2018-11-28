@@ -48,6 +48,10 @@
         <div id="perso" style="margin:0;padding:0;"></div>
         <div class="fruits"></div>
     </div>
+    <audio id="hmmm">
+        <source src="hmmm.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
 </body>
 <script>
     //CREATE SOME FRUTS (CAN BE BANANA OR APPLES)
@@ -61,13 +65,13 @@
     let fruits = document.getElementsByClassName("fruits");
     let arr = Array.prototype.slice.call(fruits);
     arr.forEach(fruit => {
-        let fruitmtop = Math.floor(Math.random() * Math.floor(document.body.clientHeight-20));
-        let fruitmleft = Math.floor(Math.random() * Math.floor(document.body.clientWidth-20));
+        let fruitmtop = Math.floor(Math.random() * Math.floor(document.body.clientHeight - 20));
+        let fruitmleft = Math.floor(Math.random() * Math.floor(document.body.clientWidth - 20));
 
-        while (fruitmtop % 4 != 0) {
+        while (fruitmtop % 6 != 0) {
             fruitmtop--;
         }
-        while (fruitmleft % 4 != 0) {
+        while (fruitmleft % 6 != 0) {
             fruitmleft--;
         }
 
@@ -89,25 +93,32 @@
         const arr = Array.prototype.slice.call(fruits);
         arr.forEach(fruit => {
             if (sizeTop == fruit.style.marginTop.match(/\d+/) && sizeLeft == fruit.style.marginLeft.match(/\d+/)) {
+                document.getElementById("hmmm").play();
                 sizep++; sizep++; sizep++; sizep++;
                 document.getElementById("perso").style.padding = `${sizep}px`;
                 fruit.remove();
             };
+
+            // if (sizeTop == fruit.style.marginTop.match(/\d+/) && sizeLeft == fruit.style.marginLeft.match(/\d+/)) {
+            //     sizep++; sizep++; sizep++; sizep++;
+            //     document.getElementById("perso").style.padding = `${sizep}px`;
+            //     fruit.remove();
+            // };
         });
         if (key == "ArrowDown") {
-            sizeTop++; sizeTop++; sizeTop++; sizeTop++;
+            sizeTop++; sizeTop++; sizeTop++; sizeTop++; sizeTop++; sizeTop++;
             document.getElementById("perso").style.marginTop = `${sizeTop}px`;
         }
         if (key == "ArrowUp") {
-            sizeTop--; sizeTop--; sizeTop--; sizeTop--;
+            sizeTop--; sizeTop--; sizeTop--; sizeTop--; sizeTop--; sizeTop--;
             document.getElementById("perso").style.marginTop = `${sizeTop}px`;
         }
         if (key == "ArrowLeft") {
-            sizeLeft--; sizeLeft--; sizeLeft--; sizeLeft--;
+            sizeLeft--; sizeLeft--; sizeLeft--; sizeLeft--; sizeLeft--; sizeLeft--;
             document.getElementById("perso").style.marginLeft = `${sizeLeft}px`;
         }
         if (key == "ArrowRight") {
-            sizeLeft++; sizeLeft++; sizeLeft++; sizeLeft++;
+            sizeLeft++; sizeLeft++; sizeLeft++; sizeLeft++; sizeLeft++; sizeLeft++;
             document.getElementById("perso").style.marginLeft = `${sizeLeft}px`;
         }
 
